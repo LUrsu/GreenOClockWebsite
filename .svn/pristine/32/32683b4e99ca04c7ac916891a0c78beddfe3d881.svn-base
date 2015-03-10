@@ -1,0 +1,14 @@
+﻿@model GreenOClock.Mvc.Models.Companies.CompanyViewModel
+
+<h3>Employee Controls</h3>
+<div class="ControlPanel">
+    @Html.ActionLink("Create new group activity", "CreateGroupActivity", new { Controller = "Activity", companyId = Model.Id })<br />
+    @Html.ActionLink("View all company activities", "CompanyActivities", new { Controller = "GroupActivity", companyId = Model.Id })
+
+    <br /><br />
+    <div>
+        <legend>Company Employees</legend>
+        
+        @Html.DisplayFor(c => c.CompanyEmployees, "CompanyEmployeeViewModel")
+    </div>
+</div>

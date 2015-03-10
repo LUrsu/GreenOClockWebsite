@@ -1,0 +1,17 @@
+﻿@model GreenOClock.Mvc.Models.LogOnModel
+
+@{
+    ViewBag.Title = "Home Page";
+}
+
+<h1>Welcome to Green O'Clock</h1>
+<hr />
+
+<p>
+    Green O'Clock is an online tool used to manage personal and group progress. Create a "company" for any type of work group.<br />
+
+    Our easy-to-use interfaces are perfect for managing project teams, off-site work groups, and more.<br />
+    Plus, it's completely free and only takes seconds!<br />
+    
+    For a better outline of this site's tools, view our @Html.ActionLink("About", "About") page.
+</p>

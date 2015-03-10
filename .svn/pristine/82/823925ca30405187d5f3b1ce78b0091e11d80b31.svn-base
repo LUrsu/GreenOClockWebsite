@@ -1,0 +1,37 @@
+﻿@model GreenOClock.Mvc.Models.Activities.EmployeeDateTimeSearchModel
+
+@{
+    ViewBag.Title = "View Company Employee Progress";
+} 
+
+<h1>View Company Employee Progress</h1>
+<hr />
+<fieldset>
+    @using(Html.BeginForm("ViewCompanyEmployeeProgress", "GroupActivity", FormMethod.Post))
+    {
+        <legend>View progress for your company by user between the selected dates</legend>
+        <text>Employee Name:<br /></text>
+        @Html.DropDownList("userId", new SelectList(Model.Company.CompanyEmployees, "User.Id", "User.FullName"))<br />
+        
+        <input type="hidden" name="companyId" value="@Model.Company.Id") />
+        <text>Start date:<br /></text>
+        <input type="text" name="start" class="datetimepicker"/><br />
+    
+        <text>End date:<br /></text>
+        <input type="text" name="end" class="datetimepicker"/><br />
+
+        <input type="submit" value="Search"/><br />
+    }
+</fieldset>
+
+<br />
+@Html.ActionLink("Back to company", "Details", new{Controller="Company", id=Model.Company.Id})
+
+@section js{
+    <script type="text/javascript">
+        $(function () {
+            $(".datetimepicker").datepicker();
+        });
+    </script>
+}
+     

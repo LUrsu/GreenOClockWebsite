@@ -1,0 +1,31 @@
+﻿@using GreenOClock.Mvc.Models.Activities
+@model PersonalActivitiesViewModel
+
+<div class="paged-list">
+    <input type="hidden" name="?resultsPerPage" value="10"/>
+    <table>
+        <tr>
+            <th> 
+                Activity Name
+            </th>
+            <th colspan="4">
+                Actions
+            </th>
+            <th>
+                Description
+            </th>
+        </tr>
+
+        <tbody class="paged-container">
+        @foreach (var personalActivity in Model.PersonalActivities)
+        {
+            <tr class="paged-container-item">
+                @Html.DisplayFor(m => personalActivity, "PersonalActivityViewModel")
+            </tr>
+        }
+        </tbody>
+    </table>
+
+    @Html.Partial("PagedControls", 2)
+    @Html.Partial("PagedData")
+</div>

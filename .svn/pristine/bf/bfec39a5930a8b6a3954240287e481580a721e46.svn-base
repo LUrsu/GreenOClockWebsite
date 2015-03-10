@@ -1,0 +1,15 @@
+﻿@model GreenOClock.Mvc.Models.Users.UserViewModel
+
+@{
+    ViewBag.Title = "Update";
+}
+
+<h1>Update User</h1>
+<hr />
+
+@using (Html.BeginForm("Update", "User", FormMethod.Post))
+{
+    <input type="hidden" name="userId" value="@Model.Id" />
+    @Html.EditorForModel()
+    <input type="submit" value="Update" />
+}

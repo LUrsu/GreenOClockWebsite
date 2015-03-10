@@ -1,0 +1,28 @@
+﻿@model GreenOClock.Mvc.Models.Progresses.ProgressViewModel
+
+<td>@Html.DisplayFor(x => Model.StartTime)</td>
+<td>
+	@if (Model.IsActive)
+	{
+		<p>Currently Active</p>
+	} else
+	{
+		@Html.DisplayFor(x => Model.EndTime.Value)
+	}
+</td>
+<td>@Html.DisplayFor(x => Model.TimeActive, "TimeSpan")</td>
+<td>
+	@if (Model.IsActive)
+	{
+		<p>*currently active*</p>
+	} else
+	{
+		@Model.Description
+	}
+</td>
+<td>
+	@Html.ActionLink("View activity", "Details", new{Controller="Activity", activityId=Model.ActivityId})
+</td>
+<td>
+	@Html.ActionLink("View user", "Details", new{Controller="User", userId=Model.UserId})
+</td>

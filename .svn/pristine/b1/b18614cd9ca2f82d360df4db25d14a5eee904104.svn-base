@@ -1,0 +1,52 @@
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using GreenOClock.Data;
+using GreenOClock.Mvc.Models.Activities;
+
+namespace GreenOClock.Mvc.Models.Companies
+{
+    public class CompanyViewModel
+    {
+        [Required]
+        public string Name { get; set; }
+
+        [Required]
+        public string City { get; set; }
+
+        [Required]
+        public string State { get; set; }
+
+        [Required]
+        public string Country { get; set; }
+
+        [ScaffoldColumn(false)]
+        public string Location
+        {
+            get { return City + ", " + State + ", " + Country; }
+        }
+
+        [Required]
+        [ScaffoldColumn(false)]
+        public int Id { get; set; }
+
+        public IQueryable<CompanyEmployeeViewModel> CompanyEmployees { get; set; }
+        public IQueryable<GroupActivityViewModel> GroupActivities { get; set; }
+
+        public CompanyViewModel()
+        {
+        }
+
+        public CompanyViewModel(Company company)
+        {
+            Name = company.Name;
+            City = company.City;
+            State = company.State;
+            Country = company.Country;
+            Id = company.Id;
+
+            CompanyEmployees = company.CompanyEmployees.Select(ce => new CompanyEmployeeViewModel(ce)).AsQueryable();
+            GroupActivities = company.GroupActivities.Select(ga => new GroupActivityViewModel(ga)).AsQueryable();
+        }
+    }
+}

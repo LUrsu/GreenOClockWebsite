@@ -1,0 +1,6 @@
+<Modules>
+  <Module PersistentId="D3029D18-33AB-49AF-AFD4-BA07869195C1" ModuleId="GreenOClock.Mvc" />
+  <Module PersistentId="AD41D8C6-E9B3-415A-A557-85F5F6EE87BA" ModuleId="GreenOClock.Services" />
+  <Module PersistentId="07259937-AEA9-450E-B384-7A2F24A2110D" ModuleId="GreenOClock.Data" />
+  <Module PersistentId="128AC3E9-69BD-47D7-B0BD-5DF06C647A45" ModuleId="GreenOClock.TestProject" />
+</Modules>

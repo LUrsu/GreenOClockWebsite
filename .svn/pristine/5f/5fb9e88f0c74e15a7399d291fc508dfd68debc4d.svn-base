@@ -1,0 +1,10 @@
+﻿@model GreenOClock.Mvc.Models.Activities.GroupMemberViewModel
+<tr>
+    <td>
+        @Html.DisplayFor(m => m.User.FullName)
+    </td>
+    <td>
+        @Html.HiddenFor(m => m.User.Id)
+        @Html.CheckBoxFor(m => m.IsGroupMember, checked(Model.IsGroupMember))
+    </td>
+</tr>

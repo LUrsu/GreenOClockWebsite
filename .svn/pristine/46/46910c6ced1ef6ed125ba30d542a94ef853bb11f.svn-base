@@ -1,0 +1,7 @@
+﻿@model IEnumerable<GreenOClock.Mvc.Models.Companies.CompanyEmployeeViewModel>
+    
+<div class="shortenedTable">
+    <table>
+        @Html.EditorFor(m => m, "CompanyEmployeeViewModel")
+    </table>
+</div>     

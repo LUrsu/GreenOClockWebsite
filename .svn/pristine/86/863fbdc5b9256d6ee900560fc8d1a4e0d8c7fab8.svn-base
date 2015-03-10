@@ -1,0 +1,5 @@
+﻿@model GreenOClock.Mvc.Models.Companies.EmployeeTypeViewModel
+@using GreenOClock.Mvc.Helpers;
+
+@Html.DropDownListFor(type => type.Id,
+    new SelectList(EmployeeTypeHelper.Types, "Id", "Name", EmployeeTypeHelper.Types.Single(et => et.Id == Model.Id).Id))

@@ -1,0 +1,12 @@
+﻿@model GreenOClock.Mvc.Models.Activities.ActivityViewModel
+
+<h1>Progress on @Model.Name</h1>
+<hr />
+
+@if (Model.Progresses.ProgressViewModels.Count() == 0)
+{
+    <p>There has been no progress made on this activity</p>
+} else
+{
+    @Html.DisplayFor(x => x.Progresses)
+}

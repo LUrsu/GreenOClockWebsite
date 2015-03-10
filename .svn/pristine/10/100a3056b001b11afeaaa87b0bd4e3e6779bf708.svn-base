@@ -1,0 +1,14 @@
+﻿@model IEnumerable<GreenOClock.Mvc.Models.Users.UserViewModel>
+
+<h1>Search Results</h1>
+<hr />
+Click a user to add them to the company.
+<ul class="results-container">
+    @foreach (var user in Model)
+    {
+        <li class="results-item">
+            @Html.ActionLink(user.FullName, "Join", new{Controller="Company", userId = user.Id, companyId = TempData["CompanyId"] })
+        </li>
+    }
+</ul>
+    

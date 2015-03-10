@@ -1,0 +1,16 @@
+﻿@model Int32
+@*      ^^^  this is the results per page        *@
+
+<div class="paged-controls">
+    <input type="hidden" name="?maxPageJump" value="@Model" />
+
+    <a class="paged-control-prev">prev</a>
+    <a class="paged-control-first"></a>
+    <span class="paged-controls-prevEtc">....</span>
+    <span class="paged-control-prevLinks"></span>
+    <var class="paged-control-current"></var>
+    <span class="paged-control-nextLinks"></span>
+    <span class="paged-controls-nextEtc">....</span>
+    <a class="paged-control-last"></a>
+    <a class="paged-control-next">next</a>
+</div>

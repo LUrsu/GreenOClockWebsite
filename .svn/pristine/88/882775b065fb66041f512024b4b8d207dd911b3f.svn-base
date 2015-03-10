@@ -1,0 +1,145 @@
+﻿using System;
+using System.Web.Mvc;
+using System.Web.Routing;
+using GreenOClock.Data;
+using GreenOClock.Mvc.Models.Activities;
+using GreenOClock.Mvc.Models.Progresses;
+using GreenOClock.Mvc.Models.Users;
+using GreenOClock.Services;
+
+namespace GreenOClock.Mvc.Controllers
+{
+    [Authorize]
+    public class ProgressController : Controller
+    {
+        public ProgressService ProgressService { get; set; }
+        public ActivityService ActivityService { get; set; }
+
+        public ProgressController()
+        {
+            ProgressService = new ProgressService();
+            ActivityService = new ActivityService();
+        }
+
+        public ActionResult Start(int id)
+        {
+            if (ActiveSessionData.ActiveActivity != null)
+                AutoStop("started a new activity without stopping the active one");
+
+            var activity = ActivityService.ById(id);
+            ActiveSessionData.ActiveActivity = activity;
+
+            if (activity.GetType().BaseType == typeof(GroupActivity))
+                ActiveSessionData.ActiveActivityProgress = new GroupProgress
+                            {
+                                StartTime = DateTime.Now,
+                                GroupActivityId = id,
+                                UserId = ActiveSessionData.ActiveUser.Id,
+                                ActivityId = id
+                            };
+            else
+                ActiveSessionData.ActiveActivityProgress = new PersonalProgress
+                            {
+                                StartTime = DateTime.Now,
+                                PersonalActivity_Id = id,
+                                UserId = ActiveSessionData.ActiveUser.Id,
+                                ActivityId = id
+                            };
+            return RedirectToAction("Status");
+        }
+
+        public ActionResult Status()
+        {
+            if (ActiveSessionData.ActiveActivityProgress == null)
+                return View();
+            return StatusById(ActiveSessionData.ActiveActivityProgress.Id);
+        }
+
+        public ActionResult StatusById(int id)
+        {
+            ProgressViewModel vm;
+            if (id == 0)
+                vm = new ProgressViewModel(ActiveSessionData.ActiveActivityProgress, true);
+            else
+                vm = new ProgressViewModel(ProgressService.ById(id));
+            return View("Status", vm);
+        }
+
+        public ActionResult Stop()
+        {
+            return View(new ProgressViewModel(ActiveSessionData.ActiveActivityProgress));
+        }
+
+        [HttpPost]
+        public void AutoStop(string description)
+        {
+            Stop("AUTO: " + description);
+        }
+
+        [HttpPost]
+        public ActionResult Stop(string description)
+        {
+            var progress = ActiveSessionData.ActiveActivityProgress;
+
+            if (progress != null)
+            {
+                progress.Description = description;
+                progress.EndTime = DateTime.Now;
+
+                ProgressService.AddProgress(ActiveSessionData.ActiveUser, progress);
+            }
+            
+            if(ActiveSessionData.ActiveActivity != null)
+            {
+                var id = ActiveSessionData.ActiveActivity.Id;
+                ActiveSessionData.ActiveActivityProgress = null;
+                ActiveSessionData.ActiveActivity = null;
+
+                return RedirectToAction("ViewProgresses", new { id });
+            }else
+            {
+                return RedirectToAction("Index", "Activity");
+            }
+            
+            
+        }
+
+        public ActionResult ViewProgresses(int id)
+        {
+            ActivityViewModel vm;
+            var activity = ActivityService.ById(id);
+
+            if (activity.GetType().BaseType == typeof (GroupActivity))
+                vm = new GroupActivityViewModel((GroupActivity) activity);
+            else
+                vm = new PersonalActivityViewModel((PersonalActivity) activity);
+
+            if (ActiveSessionData.ActiveActivity != null && ActiveSessionData.ActiveActivity.Id == id)
+            {
+                var current = new ProgressViewModel(ActiveSessionData.ActiveActivityProgress, true);
+                vm.Progresses.ProgressViewModels.Add(current);
+            }
+            
+            return View(vm);
+        }
+
+        public PartialViewResult ActiveActivity()
+        {
+            ProgressViewModel vm = null;
+            if (ActiveSessionData.ActiveActivityProgress != null)
+            {
+                vm = new ProgressViewModel(ActiveSessionData.ActiveActivityProgress);
+
+            }
+            return PartialView(vm);
+        }
+
+        public JsonResult ActiveActivityTime()
+        {
+            var seconds = 0;
+            if (ActiveSessionData.ActiveActivityProgress != null)
+                seconds = (Int32) ((TimeSpan) ActiveSessionData.ActiveActivityProgress).TotalSeconds;
+            return Json(new {seconds}, JsonRequestBehavior.AllowGet);
+        }
+    }
+}

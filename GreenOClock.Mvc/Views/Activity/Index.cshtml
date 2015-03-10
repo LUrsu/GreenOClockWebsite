@@ -1,0 +1,18 @@
+﻿@using GreenOClock.Mvc.Models.Activities
+@model ActivitiesViewModel
+
+@{
+    ViewBag.Title = "My Activities";
+}
+
+<h1>My Activities</h1>
+<hr />
+<p>
+    This page holds all of your scheduled activities in one place. Think of this as your own personal to-do list!<br />
+    On this page, group activities are only visible to users who have been added to their member list.
+</p>
+
+@Html.DisplayForModel(Model)
+<br />
+@Html.ActionLink("Create personal activity", "CreatePersonalActivity", "Activity")<br />
+@Html.ActionLink("View activity history", "History")

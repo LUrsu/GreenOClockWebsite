@@ -1,0 +1,35 @@
+﻿@model GreenOClock.Mvc.Models.Activities.PersonalActivityViewModel
+
+<b>Name:</b> @Model.Name<br />
+<b>Description:</b> @Model.Description<br /><br />
+<b>Actions</b>
+<ul>
+    <li>
+        @Html.ActionLink("View progress", "ViewProgresses", "Progress", new { activityId = Model.Id }, null)
+    </li>
+    <li>
+        @if (ActiveSessionData.ActiveActivity == null || Model.Id != ActiveSessionData.ActiveActivity.Id)
+        {
+            @Html.ActionLink("Set as active", "Start", "Progress", new { activityId = Model.Id }, null)
+        }
+        else
+        {
+            @Html.ActionLink("Currently active", "Status", "Progress")
+        }
+    </li>
+    <li>
+        @Html.ActionLink("Edit", "EditPersonalActivity", new { activityId = Model.Id})
+    </li>
+    <li>
+        @if(Model.IsActive)
+        {
+            @Html.ActionLink("Disable", "DeletePersonalActivity", new {Controller = "Activity", activityId = Model.Id})
+        }
+        else
+        {
+            @Html.ActionLink("Enable", "EnablePersonalActivity", new {Controller = "Activity", activityId = Model.Id})
+        }
+    </li>
+</ul>
+
+

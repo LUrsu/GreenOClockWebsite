@@ -1,0 +1,10 @@
+﻿@model GreenOClock.Mvc.Models.Progresses.ProgressesViewModel
+
+@{
+    ViewBag.Title = "Employee Progress";
+}
+
+<h1>Employee Progress</h1>
+<hr />
+
+@Html.DisplayForModel("ProgressesViewModel")

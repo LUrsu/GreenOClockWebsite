@@ -1,0 +1,19 @@
+﻿@model GreenOClock.Mvc.Models.Activities.GroupMembersViewModel
+@{
+    ViewBag.Title = "Update Activity Members";
+}
+
+<h1>Update Activity Members</h1>
+<hr />
+
+@using(Html.BeginForm("UpdateActivityMembers", "GroupActivity", FormMethod.Post))
+{
+    <table>
+        <th>User name</th>
+        <th>Is a group member?</th>
+        
+        @Html.EditorFor(m => m.GroupMembers)
+    </table>
+    @Html.HiddenFor(m => m.ActivityId)
+    <input type="submit" value="Submit" />
+}

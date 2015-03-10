@@ -1,0 +1,15 @@
+﻿@using GreenOClock.Mvc.Models.Activities
+@model GroupActivityViewModel
+
+@{
+    ViewBag.Title = "Group Activity";
+}
+
+<h1>Update Group Activity</h1>
+<hr />
+
+@using (Html.BeginForm("EditGroupActivity", "Activity", new {edited = true}))
+{
+    @Html.EditorForModel(Model)
+    <input type="submit" value="Submit"/>
+}

@@ -1,0 +1,18 @@
+﻿@model IEnumerable<GreenOClock.Mvc.Models.Companies.CompanyViewModel>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Companys you belong to! (and their employee lists)</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+
+@foreach (var company in Model)
+{
+    @Html.DisplayFor(c => company, "CompanyViewModel")<br />
+}
+
+@Html.ActionLink("Home", "Index", new{Controller="Home"})

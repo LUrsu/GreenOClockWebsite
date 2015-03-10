@@ -1,0 +1,39 @@
+﻿@model GreenOClock.Mvc.Models.Activities.GroupActivitiesViewModel
+
+@{
+    ViewBag.Title = "Company Activities";
+}
+
+<h1>Company Activities</h1>
+<hr />
+
+@if (Model.GroupActivities.Count > 0) {
+    <div class="paged-list">
+        <input type="hidden" name="?resultsPerPage" value="10" />
+        <table>
+            <tr>
+                <th>Activity name</th>
+                <th>Actions</th>
+                <th>Company Name</th>
+            </tr>
+
+            <tbody class="paged-container">
+            @foreach (var activity in Model.GroupActivities)
+            {
+                <tr class="paged-container-item">
+                    <td>@Html.ActionLink(activity.Name, "GroupActivityDetails", new{ Controller="Activity", activityId = activity.Id })</td>
+                    <td>@Html.ActionLink("Update Member List", "UpdateActivityMembers", new {activityId = activity.Id})</td>
+                    <td>@Html.ActionLink(activity.Company.Name, "Details", new {Controller="Company", id = activity.Company.Id})</td>
+                </tr>
+            }
+            </tbody>
+        </table>
+
+        @Html.Partial("PagedControls", 2)
+        @Html.Partial("PagedData")
+    </div>
+    <br />
+    @Html.ActionLink("Back to company", "Details", new { Controller="Company", id=Model.GroupActivities[0].Company.Id })
+} else {
+    <p>There are no activities for this company.</p>
+}

@@ -1,0 +1,13 @@
+﻿@model GreenOClock.Mvc.Models.Users.UserSearchViewModel
+    
+<div>
+    <legend>Search for employees (by name)</legend>
+
+        @using (Html.BeginForm("SearchResults", "User", FormMethod.Post))
+        {
+            @Html.HiddenFor(Model => Model.CompanyId)
+            @Html.EditorFor(Model => Model.SearchTerms)
+            <input type="submit" value="Search" />
+        }
+</div>
+    

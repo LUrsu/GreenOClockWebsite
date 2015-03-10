@@ -1,0 +1,41 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GreenOClock.Mvc", "GreenOClock.Mvc\GreenOClock.Mvc.csproj", "{D3029D18-33AB-49AF-AFD4-BA07869195C1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GreenOClock.Data", "GreenOClock.Data\GreenOClock.Data.csproj", "{07259937-AEA9-450E-B384-7A2F24A2110D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GreenOClock.Services", "GreenOClock.Services\GreenOClock.Services.csproj", "{AD41D8C6-E9B3-415A-A557-85F5F6EE87BA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GreenOClock.TestProject", "GreenOClock.TestProject\GreenOClock.TestProject.csproj", "{128AC3E9-69BD-47D7-B0BD-5DF06C647A45}"
+EndProject
+Global
+	GlobalSection(TestCaseManagementSettings) = postSolution
+		CategoryFile = GreenOClock.vsmdi
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D3029D18-33AB-49AF-AFD4-BA07869195C1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D3029D18-33AB-49AF-AFD4-BA07869195C1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D3029D18-33AB-49AF-AFD4-BA07869195C1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D3029D18-33AB-49AF-AFD4-BA07869195C1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{07259937-AEA9-450E-B384-7A2F24A2110D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{07259937-AEA9-450E-B384-7A2F24A2110D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{07259937-AEA9-450E-B384-7A2F24A2110D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{07259937-AEA9-450E-B384-7A2F24A2110D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AD41D8C6-E9B3-415A-A557-85F5F6EE87BA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AD41D8C6-E9B3-415A-A557-85F5F6EE87BA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AD41D8C6-E9B3-415A-A557-85F5F6EE87BA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AD41D8C6-E9B3-415A-A557-85F5F6EE87BA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{128AC3E9-69BD-47D7-B0BD-5DF06C647A45}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{128AC3E9-69BD-47D7-B0BD-5DF06C647A45}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{128AC3E9-69BD-47D7-B0BD-5DF06C647A45}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{128AC3E9-69BD-47D7-B0BD-5DF06C647A45}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

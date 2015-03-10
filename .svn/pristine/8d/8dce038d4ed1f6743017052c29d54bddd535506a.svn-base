@@ -1,0 +1,12 @@
+﻿@model GreenOClock.Mvc.Models.Companies.CompanyEmployeeViewModel
+@using GreenOClock.Mvc.Helpers;
+
+<tr>
+    <td>@Model.User.FullName</td>
+    
+    <td>
+        @Html.HiddenFor(ce => ce.UserId)
+        @Html.EditorFor(ce => ce.CompanyEmployeeType, "EmployeeTypeViewModel")
+    </td>
+</tr>
+

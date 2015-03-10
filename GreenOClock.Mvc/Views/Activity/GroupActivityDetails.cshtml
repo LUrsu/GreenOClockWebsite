@@ -1,0 +1,31 @@
+﻿@using GreenOClock.Mvc.Models.Activities
+@model GroupActivityViewModel
+
+@{
+    ViewBag.Title = "Group Activity Details";
+}
+
+<h1>Group Activity Details</h1>
+<hr />
+
+@Html.DisplayForModel("GroupActivityDetailsViewModel")
+
+<br />
+
+<table>
+    <tr>
+        <th>Group member names</th>
+    </tr>
+    @foreach (var user in Model.GroupMembers)
+    {
+        <tr>
+            <td>@user.User.FullName</td>
+        </tr>
+    }
+</table>
+
+@*@Html.Action("ActivityManagerControls", new{ activity = Model })*@
+    
+<br />
+@Html.ActionLink("Update member list", "UpdateActivityMembers", new{Controller = "GroupActivity", activityId = Model.Id})<br />
+@Html.ActionLink("View all activities for this company", "CompanyActivities", new{Controller = "GroupActivity", companyId = Model.Company.Id})

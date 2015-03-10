@@ -1,0 +1,13 @@
+﻿@using GreenOClock.Mvc.Models.Activities
+@model PersonalActivityViewModel
+
+@{
+    ViewBag.Title = "Personal Activity Details";
+}
+
+<h1>Personal Activity Details</h1>
+<hr />
+
+@Html.DisplayForModel("PersonalActivityDetailsViewModel")
+
+@Html.ActionLink("View all activities", "index")

@@ -1,0 +1,23 @@
+﻿@model IEnumerable<GreenOClock.Mvc.Models.Companies.CompanyEmployeeViewModel>
+
+<table>
+    <tr>
+        <th>
+            Employee Name
+        </th>
+        <th>
+            Employee Type
+        </th>
+    </tr>
+    @foreach (var employeeCompany in Model.OrderByDescending(ce => ce.EmployeeTypeId))
+    {
+        <tr>
+            <td>
+                @employeeCompany.User.FullName
+            </td>
+            <td>
+                @employeeCompany.CompanyEmployeeType.Name
+            </td>   
+        </tr>
+    }
+</table>

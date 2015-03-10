@@ -1,0 +1,30 @@
+﻿@model GreenOClock.Mvc.Models.Activities.GroupActivitiesViewModel
+
+@{
+    ViewBag.Title = "Company Activities";
+}
+
+<h1>Company Activities</h1>
+<hr />
+
+@if (Model.GroupActivities.Count > 0) {
+    <table>
+        <th>Activity name</th>
+        <th>Actions</th>
+        <th>Company Name</th>
+
+        @foreach (var activity in Model.GroupActivities)
+        {
+            <tr>
+                <td>@Html.ActionLink(activity.Name, "GroupActivityDetails", new{ Controller="Activity", activityId = activity.Id })</td>
+                <td>@Html.ActionLink("Update Member List", "UpdateActivityMembers", new {activityId = activity.Id})</td>
+                <td>@Html.ActionLink(activity.Company.Name, "Details", new {Controller="Company", id = activity.Company.Id})</td>
+            </tr>
+        }
+    </table>
+    <br />
+    @Html.ActionLink("Back to company", "Details", new { Controller="Company", id=Model.GroupActivities[0].Company.Id })
+} else {
+    <p>There are no activities for this company.</p>
+}
+</table>

@@ -1,0 +1,34 @@
+﻿@model IEnumerable<GreenOClock.Mvc.Models.Companies.CompanyViewModel>
+           
+@{
+    ViewBag.Title = "Company Index";
+}
+
+<h1>Manage Your Companies</h1>
+<hr />
+
+<p>
+    Companies are groups with owners, managers, and employees. <br />
+    Creating group activities will make delegating tasks and managing progress easy.
+</p>
+
+@Html.ActionLink("Create New Company", "Create")<br /><br />
+
+<fieldset>
+    <legend>Your Companies</legend>    
+
+    @if (Model.Count() > 0)
+    {
+        foreach (var company in Model)
+        {
+            @Html.ActionLink(company.Name, "Details", new { id = company.Id })
+            <br />
+        }
+    }
+    else
+    {
+        <p>You are not a member of any company.</p>
+    }
+    
+</fieldset>
+@Html.Action("SearchBar")

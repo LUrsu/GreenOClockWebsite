@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<configuration>
+  <connectionStrings>
+    <add name="GreenOClockEntities" connectionString="metadata=res://*/GreenOClockEntities.csdl|res://*/GreenOClockEntities.ssdl|res://*/GreenOClockEntities.msl;provider=System.Data.SqlClient;provider connection string=&quot;Data Source=neumont.nexbusiness.com;Initial Catalog=GreenOClock_PRO260_sandbox;Persist Security Info=True;User ID=sa;Password=159kbcs!;App=EntityFramework&quot;" providerName="System.Data.EntityClient" />
+  </connectionStrings>
+</configuration>

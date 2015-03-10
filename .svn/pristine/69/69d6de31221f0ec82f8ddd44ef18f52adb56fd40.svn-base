@@ -1,0 +1,25 @@
+﻿@using GreenOClock.Mvc.Models.Activities
+@model PersonalActivitiesViewModel
+
+<table>
+    <tr>
+        <th> 
+            Activity Name
+        </th>
+        <th colspan="4">
+            Actions
+        </th>
+        <th>
+            Description
+        </th>
+    </tr>
+    
+    <tbody class="results-container">
+    @foreach (var personalActivity in Model.PersonalActivities)
+    {
+        <tr class="results-item">
+            @Html.Partial("DisplayTemplates/PersonalActivityViewModel",personalActivity)
+        </tr>
+    }
+    </tbody>
+</table>

@@ -1,0 +1,9 @@
+﻿@*COMPANY ID*@
+@model Int32
+   
+<h3>Owner Controls</h3>        
+<div class="ControlPanel">
+    @Html.ActionLink("Edit company info", "Update", new { id = Model })<br />
+    @Html.ActionLink("Update employee types", "UpdateEmployeeTypes", new{companyId = Model})
+</div>
+    

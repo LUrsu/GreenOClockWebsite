@@ -1,0 +1,17 @@
+﻿@model GreenOClock.Mvc.Models.Progresses.ProgressViewModel
+
+@{
+    ViewBag.Title = "Update Progress Description";
+}
+
+<h1>Update Progress Description</h1>
+<hr />
+
+<p>In the field below, describe what you did during this session.</p>
+
+@using (Html.BeginForm("UpdateDescription", "Progress", FormMethod.Post))
+{
+    @Html.TextAreaFor(m => m.Description)
+    <br />
+    <input type="submit" value="Update" />
+}

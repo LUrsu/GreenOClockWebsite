@@ -1,0 +1,28 @@
+﻿@model IQueryable<GreenOClock.Mvc.Models.Companies.CompanyEmployeeViewModel>
+
+<div class="paged-list">
+    <input type="hidden" name="?resultsPerPage" value="5" />
+
+    <table>
+        <tr>
+            <th>
+                Employee Name
+            </th>
+            <th>
+                Employee Type
+            </th>
+        </tr>
+        <tbody class="paged-container">
+        @foreach (var employeeCompany in Model.OrderByDescending(ce => ce.EmployeeTypeId))
+        {
+            <tr class="paged-container-item">
+                @Html.DisplayFor(m => employeeCompany, "CompanyEmployeeViewModel")
+            </tr>
+        }
+        
+        </tbody>
+    </table>
+    @Html.Partial("PagedControls", 2)
+    @Html.Partial("PagedData")
+</div>
+

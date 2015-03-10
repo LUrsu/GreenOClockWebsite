@@ -1,0 +1,28 @@
+﻿@model GreenOClock.Mvc.Models.Companies.CompanyViewModel
+
+@{
+    ViewBag.Title = "Company Details";
+}
+
+<h1>Company Details</h1>
+<hr />
+
+@TempData["Message"]
+
+@Html.DisplayFor(m => m, "CompanyViewModel")
+
+<div>
+    <h3>Company Control Panel</h3>
+    <div>
+        @Html.Action("CompanyEmployeeControls", new { company = Model })
+    </div>
+    <div>
+        @Html.Action("CompanyManagerControls", new { companyId = Model.Id })
+    </div>
+    <div>
+        @Html.Action("CompanyOwnerControls", new { company = Model })
+    </div>
+</div>
+
+<br />
+@Html.ActionLink("View all companies", "Index")

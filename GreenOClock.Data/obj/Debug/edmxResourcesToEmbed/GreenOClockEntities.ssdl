@@ -1,0 +1,335 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Models.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+  <EntityContainer Name="ModelsStoreContainer">
+    <EntitySet Name="Activities" EntityType="Models.Store.Activities" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Companies" EntityType="Models.Store.Companies" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Progresses" EntityType="Models.Store.Progresses" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Users" EntityType="Models.Store.Users" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="EmployeeTypes" EntityType="Models.Store.EmployeeTypes" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="CompanyEmployees" EntityType="Models.Store.CompanyEmployees" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="GroupMembers" EntityType="Models.Store.GroupMembers" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Activities_PersonalActivity" EntityType="Models.Store.Activities_PersonalActivity" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Progresses_PersonalProgress" EntityType="Models.Store.Progresses_PersonalProgress" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Progresses_GroupProgress" EntityType="Models.Store.Progresses_GroupProgress" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Activities_GroupActivity" EntityType="Models.Store.Activities_GroupActivity" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="FK_PersonalActivityPersonalProgress" Association="Models.Store.FK_PersonalActivityPersonalProgress">
+      <End Role="Activities_PersonalActivity" EntitySet="Activities_PersonalActivity" />
+      <End Role="Progresses_PersonalProgress" EntitySet="Progresses_PersonalProgress" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserGroupProgress" Association="Models.Store.FK_UserGroupProgress">
+      <End Role="User" EntitySet="Users" />
+      <End Role="GroupProgress" EntitySet="Progresses_GroupProgress" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserPersonalProgress" Association="Models.Store.FK_UserPersonalProgress">
+      <End Role="User" EntitySet="Users" />
+      <End Role="Progresses_PersonalProgress" EntitySet="Progresses_PersonalProgress" />
+    </AssociationSet>
+    <AssociationSet Name="GroupActivityGroupProgress" Association="Models.Store.GroupActivityGroupProgress">
+      <End Role="GroupActivity" EntitySet="Activities_GroupActivity" />
+      <End Role="GroupProgress" EntitySet="Progresses_GroupProgress" />
+    </AssociationSet>
+    <AssociationSet Name="CompanyGroupActivity" Association="Models.Store.CompanyGroupActivity">
+      <End Role="Company" EntitySet="Companies" />
+      <End Role="GroupActivity" EntitySet="Activities_GroupActivity" />
+    </AssociationSet>
+    <AssociationSet Name="CompanyCompanyEmployee" Association="Models.Store.CompanyCompanyEmployee">
+      <End Role="Company" EntitySet="Companies" />
+      <End Role="CompanyEmployee" EntitySet="CompanyEmployees" />
+    </AssociationSet>
+    <AssociationSet Name="UserCompanyEmployee" Association="Models.Store.UserCompanyEmployee">
+      <End Role="User" EntitySet="Users" />
+      <End Role="CompanyEmployee" EntitySet="CompanyEmployees" />
+    </AssociationSet>
+    <AssociationSet Name="EmployeeTypeCompanyEmployee" Association="Models.Store.EmployeeTypeCompanyEmployee">
+      <End Role="EmployeeType" EntitySet="EmployeeTypes" />
+      <End Role="CompanyEmployee" EntitySet="CompanyEmployees" />
+    </AssociationSet>
+    <AssociationSet Name="GroupActivityGroupMember" Association="Models.Store.GroupActivityGroupMember">
+      <End Role="GroupActivity" EntitySet="Activities_GroupActivity" />
+      <End Role="GroupMember" EntitySet="GroupMembers" />
+    </AssociationSet>
+    <AssociationSet Name="UserGroupMember" Association="Models.Store.UserGroupMember">
+      <End Role="User" EntitySet="Users" />
+      <End Role="GroupMember" EntitySet="GroupMembers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PersonalActivity_inherits_Activity" Association="Models.Store.FK_PersonalActivity_inherits_Activity">
+      <End Role="Activity" EntitySet="Activities" />
+      <End Role="PersonalActivity" EntitySet="Activities_PersonalActivity" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PersonalProgress_inherits_Progress" Association="Models.Store.FK_PersonalProgress_inherits_Progress">
+      <End Role="Progress" EntitySet="Progresses" />
+      <End Role="PersonalProgress" EntitySet="Progresses_PersonalProgress" />
+    </AssociationSet>
+    <AssociationSet Name="FK_GroupProgress_inherits_Progress" Association="Models.Store.FK_GroupProgress_inherits_Progress">
+      <End Role="Progress" EntitySet="Progresses" />
+      <End Role="GroupProgress" EntitySet="Progresses_GroupProgress" />
+    </AssociationSet>
+    <AssociationSet Name="FK_GroupActivity_inherits_Activity" Association="Models.Store.FK_GroupActivity_inherits_Activity">
+      <End Role="Activity" EntitySet="Activities" />
+      <End Role="GroupActivity" EntitySet="Activities_GroupActivity" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Activities">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="40" />
+    <Property Name="Description" Type="nvarchar" Nullable="true" MaxLength="255" />
+    <Property Name="IsActive" Type="bit" Nullable="false" DefaultValue="true" />
+  </EntityType>
+  <EntityType Name="Companies">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="Country" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="State" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="City" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="IsActive" Type="bit" Nullable="false" DefaultValue="true" />
+  </EntityType>
+  <EntityType Name="Progresses">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="ActivityId" Type="int" Nullable="false" />
+    <Property Name="StartTime" Type="datetime" Nullable="false" />
+    <Property Name="EndTime" Type="datetime" Nullable="true" />
+    <Property Name="Description" Type="nvarchar" Nullable="true" MaxLength="255" />
+  </EntityType>
+  <EntityType Name="Users">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="FirstName" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="LastName" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+    <Property Name="IsActive" Type="bit" Nullable="false" DefaultValue="true" />
+  </EntityType>
+  <EntityType Name="EmployeeTypes">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+  </EntityType>
+  <EntityType Name="CompanyEmployees">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CompanyId" Type="int" Nullable="false" />
+    <Property Name="UserId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="EmployeeTypeId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="GroupMembers">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="GroupActivityId" Type="int" Nullable="false" />
+    <Property Name="UserId" Type="uniqueidentifier" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Activities_PersonalActivity">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="UserId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Progresses_PersonalProgress">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="User_Id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="PersonalActivity_Id" Type="int" Nullable="false" />
+    <Property Name="Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Progresses_GroupProgress">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="User_Id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="GroupActivityId" Type="int" Nullable="false" />
+    <Property Name="Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Activities_GroupActivity">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="CompanyId" Type="int" Nullable="false" />
+    <Property Name="Id" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_PersonalActivityPersonalProgress">
+    <End Role="Activities_PersonalActivity" Type="Models.Store.Activities_PersonalActivity" Multiplicity="1" />
+    <End Role="Progresses_PersonalProgress" Type="Models.Store.Progresses_PersonalProgress" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Activities_PersonalActivity">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Progresses_PersonalProgress">
+        <PropertyRef Name="PersonalActivity_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserGroupProgress">
+    <End Role="User" Type="Models.Store.Users" Multiplicity="1" />
+    <End Role="GroupProgress" Type="Models.Store.Progresses_GroupProgress" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="GroupProgress">
+        <PropertyRef Name="User_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserPersonalProgress">
+    <End Role="User" Type="Models.Store.Users" Multiplicity="1" />
+    <End Role="Progresses_PersonalProgress" Type="Models.Store.Progresses_PersonalProgress" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Progresses_PersonalProgress">
+        <PropertyRef Name="User_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="GroupActivityGroupProgress">
+    <End Role="GroupActivity" Type="Models.Store.Activities_GroupActivity" Multiplicity="1" />
+    <End Role="GroupProgress" Type="Models.Store.Progresses_GroupProgress" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="GroupActivity">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="GroupProgress">
+        <PropertyRef Name="GroupActivityId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="CompanyGroupActivity">
+    <End Role="Company" Type="Models.Store.Companies" Multiplicity="1" />
+    <End Role="GroupActivity" Type="Models.Store.Activities_GroupActivity" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Company">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="GroupActivity">
+        <PropertyRef Name="CompanyId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="CompanyCompanyEmployee">
+    <End Role="Company" Type="Models.Store.Companies" Multiplicity="1" />
+    <End Role="CompanyEmployee" Type="Models.Store.CompanyEmployees" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Company">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="CompanyEmployee">
+        <PropertyRef Name="CompanyId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="UserCompanyEmployee">
+    <End Role="User" Type="Models.Store.Users" Multiplicity="1" />
+    <End Role="CompanyEmployee" Type="Models.Store.CompanyEmployees" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="CompanyEmployee">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="EmployeeTypeCompanyEmployee">
+    <End Role="EmployeeType" Type="Models.Store.EmployeeTypes" Multiplicity="1" />
+    <End Role="CompanyEmployee" Type="Models.Store.CompanyEmployees" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="EmployeeType">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="CompanyEmployee">
+        <PropertyRef Name="EmployeeTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="GroupActivityGroupMember">
+    <End Role="GroupActivity" Type="Models.Store.Activities_GroupActivity" Multiplicity="1" />
+    <End Role="GroupMember" Type="Models.Store.GroupMembers" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="GroupActivity">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="GroupMember">
+        <PropertyRef Name="GroupActivityId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="UserGroupMember">
+    <End Role="User" Type="Models.Store.Users" Multiplicity="1" />
+    <End Role="GroupMember" Type="Models.Store.GroupMembers" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="GroupMember">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PersonalActivity_inherits_Activity">
+    <End Role="Activity" Type="Models.Store.Activities" Multiplicity="1" />
+    <End Role="PersonalActivity" Type="Models.Store.Activities_PersonalActivity" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Activity">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PersonalActivity">
+        <PropertyRef Name="Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PersonalProgress_inherits_Progress">
+    <End Role="Progress" Type="Models.Store.Progresses" Multiplicity="1" />
+    <End Role="PersonalProgress" Type="Models.Store.Progresses_PersonalProgress" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Progress">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PersonalProgress">
+        <PropertyRef Name="Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_GroupProgress_inherits_Progress">
+    <End Role="Progress" Type="Models.Store.Progresses" Multiplicity="1" />
+    <End Role="GroupProgress" Type="Models.Store.Progresses_GroupProgress" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Progress">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="GroupProgress">
+        <PropertyRef Name="Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_GroupActivity_inherits_Activity">
+    <End Role="Activity" Type="Models.Store.Activities" Multiplicity="1" />
+    <End Role="GroupActivity" Type="Models.Store.Activities_GroupActivity" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Activity">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="GroupActivity">
+        <PropertyRef Name="Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

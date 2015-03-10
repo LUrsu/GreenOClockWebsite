@@ -1,0 +1,7 @@
+﻿@if(Request.IsAuthenticated && ActiveSessionData.ActiveUser != null) {
+    <text>Welcome, <strong>@ActiveSessionData.ActiveUser.FirstName</strong>!
+    [ @Html.ActionLink("Log Off", "LogOff", "Account") ]</text>
+}
+else {
+    @:[ @Html.ActionLink("Log On", "LogOn", "Account") ]
+}

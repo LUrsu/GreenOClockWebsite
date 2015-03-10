@@ -1,0 +1,16 @@
+﻿@model GreenOClock.Mvc.Models.Activities.GroupActivityViewModel
+
+@{
+    ViewBag.Title = "Create a Group Activity";
+}
+
+<h1>Create a Group Activity</h1>
+<hr />
+
+<p>@TempData["Message"]</p>
+@using (Html.BeginForm("CreateGroupActivity", "Activity", new {companyId = Model.CompanyId}, FormMethod.Post))
+{
+    @Html.EditorForModel()
+    
+    <input type="submit" value="Create" />
+}

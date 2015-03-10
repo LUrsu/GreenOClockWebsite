@@ -1,0 +1,8 @@
+﻿@model GreenOClock.Mvc.Models.Companies.CompanyViewModel
+
+<fieldset>
+    <legend>Company Control Panel</legend>
+    @Html.Action("CompanyEmployeeControls", new { company = Model })
+    @Html.Action("CompanyManagerControls", new { companyId = Model.Id })
+    @Html.Action("CompanyOwnerControls", new { companyId = Model.Id })
+</fieldset>

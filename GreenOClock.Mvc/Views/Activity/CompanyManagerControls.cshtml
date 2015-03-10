@@ -1,0 +1,11 @@
+﻿@*COMPANY ID*@
+@model GreenOClock.Mvc.Models.Activities.GroupActivityViewModel
+
+<h3>Manager Controls</h3>
+<div class="ControlPanel">
+    @if(Model.IsActive){
+        @Html.ActionLink("Disable activity", "DeleteGroupActivity", new{Controller="Activity", activityId = Model.Id});
+    }else{
+        @Html.ActionLink("Enable activity", "EnableGroupActivity", new{Controller="Activity", activityId = Model.Id});
+    }
+</div>

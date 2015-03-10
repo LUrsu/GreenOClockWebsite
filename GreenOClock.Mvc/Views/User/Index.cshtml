@@ -1,0 +1,26 @@
+﻿@using GreenOClock.Mvc.Models.Users
+@model List<UserViewModel>
+
+@{
+    ViewBag.Title = "All Users";
+}
+
+<h2>All Users</h2>
+
+<hr />
+
+<div class="paged-list">
+    <input type="hidden" name="?resultsPerPage" value="25" />
+
+    <ul class="paged-container">
+    @foreach (var user in Model)
+    {
+        <li class="paged-container-item">
+            @Html.ActionLink(user.FullName, "Details", new { userId = user.Id })
+        </li>
+    }
+    </ul>
+
+    @Html.Partial("PagedControls", 2)
+    @Html.Partial("PagedData")
+</div>

@@ -1,0 +1,11 @@
+﻿@model GreenOClock.Mvc.Models.Companies.CompanyEmployeeViewModel
+
+<tr class="paged-container-item">
+    <td>@Model.User.FullName</td>
+    
+    <td>
+        @Html.HiddenFor(ce => ce.UserId)
+        @Html.EditorFor(ce => ce.CompanyEmployeeType, "EmployeeTypeViewModel")
+    </td>
+</tr>
+

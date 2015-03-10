@@ -1,0 +1,33 @@
+﻿@model GreenOClock.Mvc.Models.Users.UserSearchViewModel
+
+<h1>Search Results</h1>
+<hr />
+
+@if(Model.Results != null)
+{
+    <h3>Click a user to add them to the company.</h3>
+
+    <div class="paged-list">
+        <input type="hidden" name="?resultsPerPage" value="25" />
+
+        <ul class="paged-container">
+        @foreach (var user in Model.Results)
+        {
+            <li class="paged-container-item">
+                @Html.ActionLink(user.FullName, "Join", new{Controller="Company", userId = user.Id, companyId = Model.CompanyId })
+            </li>
+        }
+        </ul>
+
+        @Html.Partial("PagedControls", 2)
+        @Html.Partial("PagedData")
+    </div>
+    }else{
+    <p>
+        Your query returned no results.
+        
+    </p>
+    
+    @Html.ActionLink("Back to company", "Details", new{Controller="Company", id = Model.CompanyId})
+}
+

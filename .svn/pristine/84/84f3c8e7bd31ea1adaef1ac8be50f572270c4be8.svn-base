@@ -1,0 +1,21 @@
+﻿using System.Collections.Generic;
+
+namespace GreenOClock.Mvc.Models.Companies
+{
+    public class CompanyEmployeesViewModel
+    {
+        public IEnumerable<CompanyEmployeeViewModel> CompanyEmployees { get; set; }
+        public int CompanyId { get; set; }
+
+        public CompanyEmployeesViewModel(IEnumerable<CompanyEmployeeViewModel> companyEmployees, int companyId)
+        {
+            CompanyEmployees = companyEmployees;
+            CompanyId = companyId;
+        }
+
+        public CompanyEmployeesViewModel()
+        {
+
+        }
+    }
+}

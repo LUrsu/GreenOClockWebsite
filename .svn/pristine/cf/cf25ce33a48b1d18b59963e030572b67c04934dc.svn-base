@@ -1,0 +1,28 @@
+﻿@using GreenOClock.Mvc.Models.Activities
+@model GroupActivitiesViewModel
+
+<table>
+    <tr>
+        <th>
+            Company Name
+        </th>
+        <th> 
+            Activity Name
+        </th>
+        <th colspan="2">
+            Actions
+        </th>
+        <th>
+            Description
+        </th>
+    </tr>
+        
+    <tbody class="results-container">
+    @foreach (var groupActivity in Model.GroupActivities)
+    {
+        <tr class="results-item">
+            @Html.DisplayFor(x => groupActivity)
+        </tr>
+    }
+    </tbody>
+</table>

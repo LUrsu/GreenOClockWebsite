@@ -1,0 +1,85 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using GreenOClock.Data;
+
+namespace GreenOClock.Services
+{
+    public class ProgressService : Service<Progress, GreenOClockEntities>
+    {
+        public CompanyEmployeeService CompanyEmployees { get; set; }
+        public UserService Users { get; set; }
+        public ActivityService ActivityService { get; set; }
+
+        public ProgressService()
+        {
+            CompanyEmployees = new CompanyEmployeeService();
+            Users = new UserService();
+            ActivityService = new ActivityService();
+        }
+
+        public Progress ById(int progressId)
+        {
+            return All().FirstOrDefault(p => p.Id == progressId);
+        }
+
+        public IQueryable<Progress> ByUserId(Guid userId)
+        {
+            return All().Where(p => p.UserId == userId);
+        }
+
+        public IQueryable<Progress> ByActivityId(int activityId)
+        {
+            return All().Where(p => p.ActivityId == activityId);
+        }
+
+        public bool AddProgress(User user, Progress progress)
+        {
+            if (progress.GetType() == typeof(PersonalProgress))
+                return AddPersonalProgress(user, progress as PersonalProgress);
+            else
+                return AddGroupProgress(user, progress as GroupProgress);
+        }
+
+        public bool AddPersonalProgress(User user, PersonalProgress progress)
+        {
+            try
+            {
+                using (Entities)
+                {
+                    Entities.Users.Find(user.Id).PersonalProgress.Add(progress);
+                    Entities.SaveChanges();
+                }
+            }
+            catch
+            {
+                throw new Exception("DB error");
+            }
+            return true;
+        }
+
+        public bool AddGroupProgress(User user, GroupProgress progress)
+        {
+            try
+            {
+                var companyId = (ActivityService.ById(progress.ActivityId) as GroupActivity).CompanyId;
+                if (CompanyEmployees.UserHasEmployeePriveleges(user.Id, companyId))
+                {
+                    using (Entities)
+                    {
+                        Entities.Users.Find(user.Id).GroupProgress.Add(progress);
+                        Entities.SaveChanges();
+                    }
+                }
+                else
+                    throw new Exception("You're not allowed");
+            }
+            catch (Exception e)
+            {
+                throw new Exception("DB error", e);
+            }
+            return true;
+        }
+    }
+}

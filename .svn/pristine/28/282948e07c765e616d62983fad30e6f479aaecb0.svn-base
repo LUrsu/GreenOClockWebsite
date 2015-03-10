@@ -1,0 +1,32 @@
+﻿@model GreenOClock.Mvc.Models.Progresses.ProgressViewModel
+
+@{
+    ViewBag.Title = "Progress Status";
+}
+
+<h1>Progress Status</h1>
+<hr />
+
+@if (Model == null)
+{
+
+    
+    <b>None of your activities are set as active.</b>
+}
+else
+{
+    <div>
+        <legend>Active Activity Details</legend>
+
+        <b>Start Time</b> @Html.DisplayFor(m => m.StartTime, "DateTime") <br />
+        <b>Time Active</b> @Html.DisplayFor(m => m.TimeActive, "TimeSpan")
+
+    </div>
+    
+    <br />@Html.ActionLink("View Activity Page", "Details", new { Controller = "Activity", activityId = Model.ActivityId })
+
+    if (Model.IsActiveActivity)
+    {
+        <br />@Html.ActionLink("Stop this activity", "Stop")
+    }
+}

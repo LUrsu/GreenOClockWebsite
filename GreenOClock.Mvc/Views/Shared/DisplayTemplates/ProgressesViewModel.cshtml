@@ -1,0 +1,33 @@
+﻿@using GreenOClock.Mvc.Models.Progresses
+@model ProgressesViewModel
+
+<h3>Progress</h3>
+
+<div class="paged-list">
+    <input type="hidden" name="?resultsPerPage" value="10" />
+    <table>
+        <tr>
+            <th>Start Time</th>
+            <th>Stop Time</th>
+            <th>Time Active</th>
+            <th>Description</th>
+            <th colspan="2">Actions</th>
+        </tr>
+        <tbody class="paged-container">
+        @foreach (var vm in Model.ProgressViewModels.OrderByDescending(p => p.StartTime))
+        {
+            <tr class="paged-container-item">
+                @Html.DisplayFor(x => vm)
+            </tr>
+        }
+        </tbody>
+        <tr>
+            <td />
+            <td>Total Time</td>
+            <td>@Html.DisplayFor(x => Model.TotalTime)</td>
+        </tr>
+    </table>
+
+    @Html.Partial("PagedControls", 2)
+    @Html.Partial("PagedData")
+</div>

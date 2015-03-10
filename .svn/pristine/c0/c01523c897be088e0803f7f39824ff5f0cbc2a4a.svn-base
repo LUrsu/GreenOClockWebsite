@@ -1,0 +1,15 @@
+﻿@model GreenOClock.Mvc.Models.Companies.CompanyViewModel
+
+<br />
+
+<fieldset>
+    <legend>Basic Information</legend>
+
+    <b>Name</b> @Model.Name<br />
+    <b>Location</b> @Model.Location
+</fieldset> 
+
+@Html.Action("CompanyControls", new { company = Model })
+
+<br />
+@Html.ActionLink("View all companies", "Index")

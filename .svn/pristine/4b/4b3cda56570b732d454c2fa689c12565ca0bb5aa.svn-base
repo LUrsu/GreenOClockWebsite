@@ -1,0 +1,20 @@
+﻿@model GreenOClock.Mvc.Models.Activities.GroupActivityViewModel
+
+<b>Name</b> @Model.Name<br />
+<b>Description</b> @Model.Description<br /><br />
+<b>Actions</b>
+<ul>
+    <li>
+        @Html.ActionLink("View progress", "ViewProgresses", "Progress", new { activityId = Model.Id }, null)
+    </li>
+    <li>
+        @if (ActiveSessionData.ActiveActivity == null || Model.Id != ActiveSessionData.ActiveActivity.Id)
+        {
+            @Html.ActionLink("Set as active", "Start", "Progress", new { activityId = Model.Id }, null)
+        }
+        else
+        {
+            @Html.ActionLink("Currently active", "Status", "Progress")
+        }
+    </li>
+</ul>

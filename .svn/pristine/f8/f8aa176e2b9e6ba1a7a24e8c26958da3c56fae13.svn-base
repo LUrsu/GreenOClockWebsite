@@ -1,0 +1,31 @@
+﻿using System;
+using GreenOClock.Data;
+using GreenOClock.Mvc.Models.Progresses;
+
+namespace GreenOClock.Mvc.Models.Activities
+{
+    public class PersonalActivityViewModel : ActivityViewModel
+    {
+        public Guid UserId { get; set; }
+        public bool Active { get; set; }
+        public bool IsActive { get; set; }
+
+        public PersonalActivityViewModel()
+        {
+            Progresses = new ProgressesViewModel();
+        }
+
+        public PersonalActivityViewModel(PersonalActivity activity)
+            : this(activity, false)
+        {
+        }
+
+        public PersonalActivityViewModel(PersonalActivity activity,  bool active) : base(activity)
+        {
+            UserId = activity.UserId;
+            Progresses = new ProgressesViewModel(activity.PersonalProgresses);
+            Active = active;
+            IsActive = activity.IsActive;
+        }
+    }
+}

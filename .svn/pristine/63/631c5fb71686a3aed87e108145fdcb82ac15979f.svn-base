@@ -1,0 +1,23 @@
+﻿@using GreenOClock.Mvc.Models.Activities
+@model ActivitiesViewModel
+
+
+<h3>Group Activities</h3>
+@if (Model != null && Model.GroupActivities.GroupActivities.Count > 0)
+{
+    @Html.DisplayFor(m => m.GroupActivities)
+}
+else
+{
+    <p>There are no group activities to display.</p>
+}
+
+<h3>Personal Activities</h3>
+@if (Model != null && Model.PersonalActivities.PersonalActivities.Count > 0)
+{
+    @Html.DisplayFor(m => m.PersonalActivities)
+}
+else
+{
+    <p>There are no personal activities to display.</p>
+}

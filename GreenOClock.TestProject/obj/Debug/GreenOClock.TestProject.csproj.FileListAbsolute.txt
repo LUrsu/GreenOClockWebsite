@@ -1,0 +1,5 @@
+C:\Users\lursu\Documents\quarter 6\.Net 2\Green O Clock\GreenOClock.TestProject\bin\Debug\GreenOClock.TestProject.dll
+C:\Users\lursu\Documents\quarter 6\.Net 2\Green O Clock\GreenOClock.TestProject\bin\Debug\GreenOClock.TestProject.pdb
+C:\Users\lursu\Documents\quarter 6\.Net 2\Green O Clock\GreenOClock.TestProject\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\lursu\Documents\quarter 6\.Net 2\Green O Clock\GreenOClock.TestProject\obj\Debug\GreenOClock.TestProject.dll
+C:\Users\lursu\Documents\quarter 6\.Net 2\Green O Clock\GreenOClock.TestProject\obj\Debug\GreenOClock.TestProject.pdb

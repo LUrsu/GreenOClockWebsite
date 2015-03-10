@@ -1,0 +1,27 @@
+﻿@model GreenOClock.Mvc.Models.Activities.PersonalActivityViewModel
+
+<fieldset>
+    
+    <legend>Personal Activity</legend>
+
+    <div class="editor-label">
+        @Html.LabelFor(m => m.Name)
+    </div>
+    <div class="editor-field">
+        @Html.TextBoxFor(m => m.Name)
+        @Html.ValidationMessageFor(m => m.Name)
+    </div>
+
+    <div class="editor-label">
+        @Html.LabelFor(m => m.Description)
+    </div>
+
+    <div class="editor-field">
+        @Html.TextAreaFor(m => m.Description)
+        @Html.ValidationMessageFor(m => m.Description)
+    </div>
+    @if (Model != null && Model.Id != null && Model.Id > 0)
+    {
+        @Html.HiddenFor(m => m.Id, Model.Id)
+    }
+</fieldset>

@@ -1,0 +1,18 @@
+﻿@model GreenOClock.Mvc.Models.Users.UserViewModel
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h1>User Details</h1>
+<hr />
+
+@Html.DisplayForModel()
+
+<br /><br />
+
+<p>
+    @Html.ActionLink("Update", "Update", new { userId = Model.Id }) |
+    @Html.ActionLink("Delete", "Delete", new { userId = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -1,0 +1,30 @@
+﻿@model GreenOClock.Mvc.Models.Activities.GroupMembersViewModel
+@{
+    ViewBag.Title = "Update Activity Members";
+}
+
+<h1>Update Activity Members</h1>
+<hr />
+
+@using(Html.BeginForm("UpdateActivityMembers", "GroupActivity", FormMethod.Post))
+{
+    <div class="paged-list">
+        <input type="hidden" name="?resultsPerPage" value="10" />
+        <table>
+            <tr>
+                <th>User name</th>
+                <th>Is a group member?</th>
+            </tr>
+        
+            <tbody class="paged-container">
+                @Html.EditorFor(m => m.GroupMembers)
+            </tbody>
+        </table>
+
+        @Html.Partial("PagedControls", 2)
+        @Html.Partial("PagedData")
+    </div>
+    
+    @Html.HiddenFor(m => m.ActivityId)
+    <input type="submit" value="Submit" />
+}

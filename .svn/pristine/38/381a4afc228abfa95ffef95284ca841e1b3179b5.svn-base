@@ -1,0 +1,8 @@
+﻿@*COMPANY ID*@
+@model Int32
+
+<h3>Manager Controls</h3>
+<div class="ControlPanel">
+    @Html.ActionLink("View employee progress", "ViewCompanyEmployeeProgress", new{Controller="GroupActivity", companyId = Model})<br /><br />
+    @Html.Action("SearchBar", "User", new{companyId = Model})
+</div>

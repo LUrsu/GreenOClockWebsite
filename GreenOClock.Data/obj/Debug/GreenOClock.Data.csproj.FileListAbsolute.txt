@@ -1,0 +1,8 @@
+C:\Users\lursu\Documents\quarter 6\.Net 2\Green O Clock\GreenOClock.Data\bin\Debug\GreenOClock.Data.dll.config
+C:\Users\lursu\Documents\quarter 6\.Net 2\Green O Clock\GreenOClock.Data\bin\Debug\GreenOClock.Data.dll
+C:\Users\lursu\Documents\quarter 6\.Net 2\Green O Clock\GreenOClock.Data\bin\Debug\GreenOClock.Data.pdb
+C:\Users\lursu\Documents\quarter 6\.Net 2\Green O Clock\GreenOClock.Data\bin\Debug\EntityFramework.dll
+C:\Users\lursu\Documents\quarter 6\.Net 2\Green O Clock\GreenOClock.Data\bin\Debug\EntityFramework.xml
+C:\Users\lursu\Documents\quarter 6\.Net 2\Green O Clock\GreenOClock.Data\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\lursu\Documents\quarter 6\.Net 2\Green O Clock\GreenOClock.Data\obj\Debug\GreenOClock.Data.dll
+C:\Users\lursu\Documents\quarter 6\.Net 2\Green O Clock\GreenOClock.Data\obj\Debug\GreenOClock.Data.pdb

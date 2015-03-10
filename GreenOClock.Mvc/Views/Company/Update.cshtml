@@ -1,0 +1,19 @@
+﻿@model GreenOClock.Mvc.Models.Companies.CompanyViewModel
+
+@{
+    ViewBag.Title = "Update Company";
+}
+
+<h1>Update Company</h1>
+<hr />
+
+<b>@TempData["Message"]</b>
+
+@using (Html.BeginForm("Update", "Company", FormMethod.Post))
+{
+    @Html.EditorForModel()
+    <input type="submit" value="Update" />
+}
+<br />
+@Html.ActionLink("Back to Company", "Details", new{id = Model.Id})
+

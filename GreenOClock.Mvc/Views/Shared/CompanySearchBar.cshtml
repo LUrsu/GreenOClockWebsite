@@ -1,0 +1,8 @@
+﻿<fieldset>
+    <legend>Company Search (by name)</legend>
+    <br />
+    @using (Html.BeginForm("Search", "Company")){
+        <input type="text" name="searchTerms"/>
+        <input type="submit" value="Search" />
+    }
+</fieldset>

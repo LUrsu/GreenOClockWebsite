@@ -1,0 +1,45 @@
+<Configuration>
+  <RecentFiles>
+    <RecentFiles>
+      <File id="D3029D18-33AB-49AF-AFD4-BA07869195C1/d:Views/d:Activity/f:GroupActivityDetails.cshtml" caret="77" fromTop="1" />
+      <File id="D3029D18-33AB-49AF-AFD4-BA07869195C1/d:Controllers/f:ProgressController.cs" caret="584" fromTop="19" />
+      <File id="AD41D8C6-E9B3-415A-A557-85F5F6EE87BA/f:packages.config" caret="0" fromTop="0" />
+      <File id="AD41D8C6-E9B3-415A-A557-85F5F6EE87BA/f:ValidationException.cs" caret="491" fromTop="18" />
+      <File id="D3029D18-33AB-49AF-AFD4-BA07869195C1/d:Controllers/f:AccountController.cs" caret="298" fromTop="2" />
+      <File id="07259937-AEA9-450E-B384-7A2F24A2110D/f:ModelPartials.cs" caret="0" fromTop="0" />
+      <File id="07259937-AEA9-450E-B384-7A2F24A2110D/f:packages.config" caret="0" fromTop="0" />
+      <File id="07259937-AEA9-450E-B384-7A2F24A2110D/f:GreenOClockEntities.edmx.sql" caret="0" fromTop="0" />
+      <File id="07259937-AEA9-450E-B384-7A2F24A2110D/f:GreenOClock.tt" caret="0" fromTop="0" />
+      <File id="07259937-AEA9-450E-B384-7A2F24A2110D/f:GreenOClock.Context.cs" caret="0" fromTop="0" />
+      <File id="07259937-AEA9-450E-B384-7A2F24A2110D/f:GreenOClock.Context.tt" caret="0" fromTop="0" />
+      <File id="07259937-AEA9-450E-B384-7A2F24A2110D/f:App.Config" caret="551" fromTop="4" />
+      <File id="AD41D8C6-E9B3-415A-A557-85F5F6EE87BA/f:ActivityService.cs" caret="1088" fromTop="0" />
+      <File id="AD41D8C6-E9B3-415A-A557-85F5F6EE87BA/f:UserService.cs" caret="187" fromTop="8" />
+      <File id="AD41D8C6-E9B3-415A-A557-85F5F6EE87BA/f:Service.cs" caret="484" fromTop="16" />
+      <File id="D3029D18-33AB-49AF-AFD4-BA07869195C1/d:Views/d:User/f:Index.cshtml" caret="0" fromTop="0" />
+      <File id="D3029D18-33AB-49AF-AFD4-BA07869195C1/d:Controllers/f:ActivityController.cs" caret="3591" fromTop="0" />
+      <File id="AD41D8C6-E9B3-415A-A557-85F5F6EE87BA/f:PersonalActivityService.cs" caret="302" fromTop="10" />
+      <File id="D3029D18-33AB-49AF-AFD4-BA07869195C1/d:Controllers/f:UserController.cs" caret="388" fromTop="10" />
+    </RecentFiles>
+    <RecentEdits>
+      <File id="D3029D18-33AB-49AF-AFD4-BA07869195C1/d:Views/d:Activity/f:GroupActivityDetails.cshtml" caret="711" fromTop="21" />
+    </RecentEdits>
+  </RecentFiles>
+  <NAntValidationSettings>
+    <NAntPath value="" />
+  </NAntValidationSettings>
+  <UnitTestRunner>
+    <Providers />
+  </UnitTestRunner>
+  <UnitTestRunnerNUnit>
+    <NUnitInstallDir IsNull="False" />
+    <UseAddins>Never</UseAddins>
+  </UnitTestRunnerNUnit>
+  <SettingsComponent>
+    <string />
+    <integer />
+    <boolean>
+      <setting name="SolutionAnalysisEnabled">False</setting>
+    </boolean>
+  </SettingsComponent>
+</Configuration>

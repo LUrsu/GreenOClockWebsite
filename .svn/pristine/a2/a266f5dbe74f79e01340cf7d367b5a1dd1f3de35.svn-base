@@ -1,0 +1,20 @@
+﻿@using GreenOClock.Mvc.Models.Progresses
+@model ProgressesViewModel
+
+<h3>Progress</h3>
+
+<table>
+    <tr>
+        <th>Start Time</th>
+        <th>Stop Time</th>
+        <th>Time Active</th>
+        <th>Description</th>
+        <th colspan="2">Actions</th>
+    </tr>
+    @Html.DisplayFor(x => Model.ProgressViewModels)
+    <tr>
+        <td />
+        <td>Total Time</td>
+        <td>@Html.DisplayFor(x => Model.TotalTime)</td>
+    </tr>
+</table>

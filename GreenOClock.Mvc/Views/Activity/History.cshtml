@@ -1,0 +1,15 @@
+﻿@using GreenOClock.Mvc.Models.Activities
+@model ActivitiesViewModel
+
+@{
+    ViewBag.Title = "My Activity History";
+}
+
+<h1>My Activity History</h1>
+<hr />
+
+<p>This page displays all of your activities which have been deleted or disabled.</p>
+
+@Html.DisplayForModel(Model)
+
+@Html.ActionLink("View all activities", "Index")

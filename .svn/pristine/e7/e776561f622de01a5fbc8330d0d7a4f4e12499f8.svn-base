@@ -1,0 +1,8 @@
+﻿@model GreenOClock.Mvc.Models.Companies.CompanyViewModel
+   
+<h3>Owner Controls</h3>        
+<div class="ControlPanel">
+    @Html.ActionLink("Edit company info", "Update", new { id = Model.Id })<br />
+    @Html.ActionLink("Update employee types", "UpdateEmployeeTypes", new{ companyId = Model.Id })
+</div>
+    

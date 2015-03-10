@@ -1,0 +1,11 @@
+﻿@model GreenOClock.Mvc.Models.Users.UserViewModel
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h1>User Details</h1>
+<hr />
+<br />
+<b>Name</b> @Model.FullName<br />
+<b>Date Joined</b> @Model.CreatedOn.ToShortDateString()

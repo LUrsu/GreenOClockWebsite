@@ -1,0 +1,17 @@
+﻿@using GreenOClock.Mvc.Models.Users
+@model List<UserViewModel>
+
+@{
+    ViewBag.Title = "All Users";
+}
+
+<h2>All Users</h2>
+
+<ul class="results-container">
+    @foreach (var user in Model)
+    {
+        <li class="results-item">
+            @Html.ActionLink(user.FullName, "Details", new { userId = user.Id })
+        </li>
+    }
+</ul>

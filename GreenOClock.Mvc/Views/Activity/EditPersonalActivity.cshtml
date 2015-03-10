@@ -1,0 +1,13 @@
+﻿@model GreenOClock.Mvc.Models.Activities.PersonalActivityViewModel
+
+@{
+    ViewBag.Title = "Edit Personal Activity";
+}
+
+<h1>Edit Personal Activity</h1>
+<hr />
+@using (Html.BeginForm("EditPersonalActivity", "Activity", new {edited = true}))
+{
+    @Html.EditorForModel(Model)
+    <input type="submit" value="Submit"/>
+}

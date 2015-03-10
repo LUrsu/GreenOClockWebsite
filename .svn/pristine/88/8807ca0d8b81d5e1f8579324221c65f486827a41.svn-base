@@ -1,0 +1,54 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using System.Web;
+using GreenOClock.Data;
+using GreenOClock.Mvc.Models.Users;
+using GreenOClock.Services;
+
+namespace GreenOClock.Mvc.Models.Companies
+{
+    public class CompanyEmployeeViewModel
+    {
+        public UserViewModel User { get; set; }
+        [ScaffoldColumn(false)]
+        public Guid UserId { get; set; }
+
+        public CompanyViewModel Company { get; set; }
+        [ScaffoldColumn(false)]
+        public int CompanyId { get; set; }
+
+        [DisplayName("Employee Type")]
+        public EmployeeTypeViewModel CompanyEmployeeType { get; set; }
+        [ScaffoldColumn(false)]
+        public int EmployeeTypeId { get; set; }
+
+        [ScaffoldColumn(false)]
+        public int Id { get; set; }
+
+        public CompanyEmployeeViewModel(CompanyEmployee companyEmployee)
+        {
+            CompanyId = companyEmployee.CompanyId;
+            UserId = companyEmployee.UserId;
+            EmployeeTypeId = companyEmployee.EmployeeTypeId;
+
+            Company = new CompanyViewModel(companyEmployee.Company);
+            User = new UserViewModel(companyEmployee.User);
+            CompanyEmployeeType = new EmployeeTypeViewModel(companyEmployee.EmployeeType);
+
+            Id = companyEmployee.Id;
+        }
+
+        public string FullName()
+        {
+            return User.FirstName + " " + User.LastName;
+        }
+
+        public CompanyEmployeeViewModel()
+        {
+            
+        }
+    }
+}

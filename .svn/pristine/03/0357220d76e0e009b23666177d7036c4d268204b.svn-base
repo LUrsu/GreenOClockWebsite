@@ -1,0 +1,182 @@
+$(document).ready(function () {
+    $.get(location.protocol + "//" + location.host + "/Progress/ActiveActivity", function (data) {
+        if ($("#active-activity-display") != undefined) {
+            $("#active-activity-display section").html(data);
+            handleSlider();
+        }
+
+        var timer = $("#active-activity-display #timer")[0];
+        if (timer != undefined) {
+            handleOnLeavePage();
+            handleTimer();
+        }
+    }, "html");
+
+    var resultsContainer = $(".results-container");
+    if (resultsContainer.size() > 0) {
+        handlePagination();
+    }
+});
+
+function handleSlider() {
+	var showing = true;
+	$("#toggle-activity-display").click(function () {
+	    if (showing) {
+	        $("#active-activity-display section").hide("slide", { direction: "down" }, 500);
+	        $("#toggle-activity-display").text("show");
+	    } else {
+	        $("#active-activity-display section").show("slide", { direction: "down" }, 500);
+	        $("#toggle-activity-display").text("hide");
+	    }
+	    showing = !showing;
+	});
+}
+
+function handleTimer() {
+	var secondsElapsed = 0;
+
+	function updateSeconds() {
+		$.getJSON("/Progress/ActiveActivityTime", function (data) {
+			secondsElapsed = data["seconds"];
+		});
+	}
+	updateSeconds();
+	setInterval(function () {
+		updateSeconds();
+	}, 60000);
+	function updateDisplay() {
+		var sec = secondsElapsed;
+		var hour = Math.floor(sec / 3600);
+		sec = sec % 3600;
+		var min = Math.floor(sec / 60);
+		sec = sec % 60;
+
+		function pad(num) {
+			return (num < 10 ? "0" : "") + num;
+		}
+		$("#timer").html(pad(hour) + ":" + pad(min) + ":" + pad(sec));
+	}
+	updateDisplay();
+	setInterval(function () {
+		secondsElapsed++;
+		updateDisplay();
+	}, 1000);
+}
+
+function handleOnLeavePage() {
+	var leaving = true;
+
+	$("a, input[type=submit], button.nav-internal").click(function () {
+		leaving = false;
+	});
+
+	window.onbeforeunload = function () {
+		if (!leaving)
+			return undefined;
+		return "You may have just tried to leave the site, but you still have an active activity. If you leave, we will try to save your progress but we can't make any promises...";
+	};
+
+	window.onunload = function () {
+		if (leaving) {
+			$.post("/Progress/AutoStop", { description: "Left website" }, function () {
+			});
+		}
+    };
+}
+
+function handlePagination() {
+    alert($(".results-container").size());
+    $(".results-container").each(function () {
+        var c = new Container($(this));
+        c.setPage(1);
+    });
+}
+
+function Container(resConId) {
+    this.resultsContainer = $(resConId);
+    this.resultsPerPage = 5;
+    this.itemCount = $(this.resultsContainer).children(".results-item").size();
+    this.pageCount = Math.floor(this.itemCount / this.resultsPerPage) + 1;
+    this.currentPageNr = -1;
+
+    this.hideResults = function (start, end) {
+        $(this.resultsContainer).children(".results-item").slice(start, end).hide("fast");
+    };
+
+    this.showResults = function (start, end) {
+        $(this.resultsContainer).children(".results-item").slice(start, end).show("fast");
+    };
+
+    this.createPageLinks = function (pageNr) {
+        var div = $("<div class='results-navlink'></div>");
+        $(div).append($("<a class='results-navlink-first'>1<a>"));
+        if (pageNr > 1)
+            $(div).append($("<a class='results-navlink-prev'>Prev<a>"));
+
+        $(div).append($("<span class='results-current-page'>" + pageNr + "</span>"));
+
+        if (pageNr < this.pageCount)
+            $(div).append($("<a class='results-navlink-next'>Next<a>"));
+        $(div).append($("<a class='results-navlink-last'>" + this.pageCount + "</a>"));
+        this.setPageLinkJs($(div));
+        return $(div);
+    };
+
+    this.setPageLinkJs = function (div) {
+        var temp = this;
+        $(div).children(".results-navlink-first").click(function () { temp.setPage(1); });
+        $(div).children(".results-navlink-prev").click(function () { temp.prevPage(); });
+        $(div).children(".results-navlink-next").click(function () { temp.nextPage(); });
+        $(div).children(".results-navlink-last").click(function () { temp.setPage(temp.pageCount); });
+    };
+
+    this.removePageLinkJs = function(div) {
+        $(div).find(".results-navlink-first").removeAttr("onclick");
+        $(div).find(".results-navlink-prev").removeAttr("onclick");
+        $(div).find(".results-navlink-next").removeAttr("onclick");
+        $(div).find(".results-navlink-last").removeAttr("onclick");
+    };
+
+    this.getPageStart = function (pageNr) {
+        return this.resultsPerPage * (pageNr - 1);
+    };
+
+    this.getPageEnd = function (pageNr) {
+        var end = pageNr * this.resultsPerPage;
+        if (end > this.itemCount)
+            end = this.itemCount;
+        return end;
+    };
+
+    this.createPageData = function (pageNr) {
+        var div = $('<div class="results-page-data"></div>');
+        $(div).append($("<span>displaying " + (this.getPageStart(pageNr) + 1) + " - " + this.getPageEnd(pageNr) + " of " + this.itemCount + ".</span>"));
+        return $(div);
+    };
+
+    this.setPage = function (pageNr) {
+        if (this.currentPageNr != pageNr) {
+            this.hideResults(0, this.itemCount);
+            this.showResults(this.getPageStart(pageNr), this.getPageEnd(pageNr));
+        }
+        if ($(this.resultsContainer).children(".results-generated").length) {
+            this.removePageLinkJs($(this.resultsContainer).find(".results-generated .results-navlink"));
+            $(this.resultsContainer).find(".results-generated").html("");
+        }
+
+        var div = $('<div class="results-generated"></div>');
+        $(div).append($(this.createPageLinks(pageNr)));
+        $(div).append($(this.createPageData(pageNr)));
+        $(this.resultsContainer).append($(div));
+
+        this.currentPageNr = pageNr;
+    };
+
+    this.prevPage = function () {
+        this.setPage(this.currentPageNr - 1);
+    };
+
+    this.nextPage = function () {
+        this.setPage(this.currentPageNr + 1);
+    };
+}

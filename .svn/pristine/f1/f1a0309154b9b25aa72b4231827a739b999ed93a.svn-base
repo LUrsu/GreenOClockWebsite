@@ -1,0 +1,13 @@
+﻿@model GreenOClock.Mvc.Models.Progresses.ProgressViewModel
+
+@if (Model != null)
+{
+    <div>
+        <legend>@Html.ActionLink("Active Activity", "Details", "Activity", new { activityId = Model.ActivityId }, null)</legend>
+        You've been working for: <div id="timer"></div>
+    </div>
+}
+else
+{
+    <p>There is no active activity, @Html.ActionLink("view your activities", "Index", "Activity")</p>
+}

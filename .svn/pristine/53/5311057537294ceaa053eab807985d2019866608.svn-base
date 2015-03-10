@@ -1,0 +1,35 @@
+﻿@model GreenOClock.Mvc.Models.Companies.CompanyEmployeesViewModel
+@using GreenOClock.Mvc.Helpers;
+
+@{
+    ViewBag.Title = "Update Employee Types";
+}
+
+<h1>Update Employee Types</h1>
+<hr />
+
+
+<p>
+    @TempData["Message"]<br /> 
+    Select roles for the employees of this company.
+</p>
+
+@using(Html.BeginForm("UpdateEmployeeTypes", "Company", new{CompanyId = Model.CompanyId}, FormMethod.Post))
+{
+   <table>
+        <tr>
+            <th>
+                Employee Name
+            </th>
+            <th>
+                Company Role
+            </th>
+        </tr>
+        
+        @Html.EditorFor(m => m.CompanyEmployees)
+        
+    </table>
+    <input type="submit" value="Submit" /> 
+}
+<br />
+@Html.ActionLink("Back to Company", "Details", new{id = Model.CompanyId})

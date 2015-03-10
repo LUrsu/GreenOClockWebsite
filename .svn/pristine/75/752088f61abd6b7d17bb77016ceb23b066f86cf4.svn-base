@@ -1,0 +1,17 @@
+﻿@model GreenOClock.Mvc.Models.Progresses.ProgressViewModel
+
+@{
+    ViewBag.Title = "Stop";
+}
+
+<h1>Stop Activity</h1>
+<hr />
+
+In the field below, briefly describe what you did during this session.
+
+@using (Html.BeginForm("Stop", "Progress", FormMethod.Post))
+{
+    @Html.TextArea("description")
+    
+    <input type="submit" value="Stop" />
+}
